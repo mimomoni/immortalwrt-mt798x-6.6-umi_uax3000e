@@ -31,8 +31,6 @@ add_feed() {
 
 # 添加istore和nas_luci源
 add_feed "istore" "https://github.com/linkease/istore.git;main"
-# add_feed "nas_luci" "https://github.com/linkease/nas-packages-luci.git;main"
-# add_feed "nas_packages" "https://github.com/linkease/nas-packages.git;master"
 
 # 克隆第三方包函数
 # 参数1: 仓库URL
@@ -64,10 +62,5 @@ fi
 
 # 克隆所需第三方包
 clone_package "https://github.com/gdy666/luci-app-lucky.git" "package/luci-app-lucky"
-# clone_package "https://github.com/tty228/luci-app-wechatpush.git" "package/luci-app-wechatpush"
-# clone_package "https://github.com/rogueme/luci-app-adguardhome.git" "package/luci-app-adguardhome"
-# clone_package "https://github.com/sirpdboy/luci-app-taskplan.git" "package/luci-app-taskplan"
-# 克隆mentohust解决luci-app-airwhu缺失依赖的警告
-# clone_package "https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk.git" "package/mentohust"
 
 echo "✅ diy-part1.sh 执行完成"
