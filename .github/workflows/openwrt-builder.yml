@@ -162,26 +162,6 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: Selected plugins list
-      id: extract_plugins
-      run: |
-        source "${{ env.BUILD_SCRIPT }}"
-        cd "$SOURCE_DIR"
-        log_info "Dir：$(pwd)" 0
-        plugins=$(grep -E '^CONFIG_PACKAGE_luci-(app|theme)-.*=y$' ".config" | 
-          awk -F'[=]' '{print substr($1, 16)}')
-        log_separator "Plugins list[$(echo "$plugins" | grep -c '^')]" 0
-        count=0
-        while IFS= read -r plugin; do
-          if [ -n "$plugin" ]; then
-            count=$((count+1))
-            log_highlight "$count、$plugin" 0
-          fi
-        done < <(echo "$plugins")    
-        if [ $count -eq 0 ]; then
-          log_highlight "No plugin" 0
-        fi
-
     - name: Download package
       id: package
       run: |
