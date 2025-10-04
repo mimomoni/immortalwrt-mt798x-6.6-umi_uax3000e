@@ -15,10 +15,27 @@ name: OpenWrt Builder
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+      build_version:
+        description: ' Build Version'
+        required: true
+        default: 'Host'
+        type: choice
+        options:
+          - padavanonly/immortalwrt-mt798x-6.6
+          - Muffinbit/immortalwrt
+      build_branch:
+        description: ' Build Branch'
+        required: true
+        default: 'Host'
+        type: choice
+        options:
+          - openwrt-24.10-6.6
+          - master
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
-  REPO_BRANCH: openwrt-24.10-6.6
+  REPO_URL: https://github.com/${{ github.event.inputs.build_version}}
+  REPO_BRANCH: ${{ github.event.inputs.build_branch}}
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
